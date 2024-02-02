@@ -7,6 +7,12 @@
   <body>
     <div class="container">
       <h1>Post installation configuration OpenBSD</h1>
+      <ul>
+        <li># echo "permit nopass keepenv" > /etc/doas.conf</li>
+        <li>$ doas sysupgrade -r - <em>for running current snapshot</em></li>
+        <li>$ doas pkg_add obsdfreqd git curl neovim firefox</li>
+        <li>$ doas rcctl enable apmd obsdfreqd <em>put -L in /etc/rc.conf.local as apmd_flags, and obsdfreqd should be enabled under pkg_scripts</em></li>
+      </ul>
     </div>
   </body>
 </html>
