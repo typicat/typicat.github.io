@@ -10,14 +10,13 @@
     <div class="container">
       <h1>Post installation configuration OpenBSD</h1>
       <div class="card border-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">doas</div>
+        <div class="card-header">doas configuration</div>
         <div class="card-body">
-          <h5 class="card-title">doas configuration</h5>
+          <!-- <h5 class="card-title">doas configuration</h5> -->
           <p class="card-text">echo "permit keepenv nopass username" > /etc/doas.conf.</p>
         </div>
       
-      <ul>
-        <li>echo "permit nopass keepenv username" > /etc/doas.conf</li>
+  
         <li>doas sysupgrade -r - <em>for running current snapshot</em></li>
         <li>doas pkg_add obsdfreqd git curl neovim firefox</li>
         <li>doas rcctl enable apmd obsdfreqd <em>put -L in /etc/rc.conf.local as apmd_flags, and obsdfreqd should be enabled under pkg_scripts</em></li>
