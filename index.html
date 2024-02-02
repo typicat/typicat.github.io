@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
     <title>Post installation configuration OpenBSD</title>
   </head>
+
   <body>
     <div class="container bg-light">
       <h1>Post installation configuration OpenBSD</h1>
-      <div class="card border-light mb-3" style="max-width: 64rem;">
+      <div class="card border-light mb-3" style="max-width: 64rem">
         <div class="card-header">doas configuration</div>
         <div class="card-body">
           <!-- <h5 class="card-title">doas configuration</h5> -->
-          <p class="card-text">echo "permit keepenv nopass username" > /etc/doas.conf.</p>
+          <p class="card-text">
+            echo "permit keepenv nopass username" > /etc/doas.conf.
+          </p>
         </div>
-        <div class="card border-light mb-3" style="max-width: 64rem;">
-          <div class="card-header">sysupgrade</div>
-          <div class="card-body">
-            <!-- <h5 class="card-title">doas configuration</h5> -->
-            <p class="card-text">doas sysupgrade -r - <em>for running current snapshot</em></p>
-          </div>
-          <div class="card border-light mb-3" style="max-width: 64rem;">
-            <div class="card-header">software</div>
-            <div class="card-body">
-              <!-- <h5 class="card-title">doas configuration</h5> -->
-              <p class="card-text">doas pkg_add obsdfreqd git curl neovim firefox</p>
-            </div>
-<code>
-kern.shminfo.shmall=6291456
-kern.shminfo.shmmax=999999999
-kern.shminfo.shmmni=2048
-
-kern.shminfo.shmseg=2048
-kern.seminfo.semmns=4096
-kern.seminfo.semmni=1024
-
-kern.maxproc=3250
-kern.maxfiles=8192
-kern.maxthread=5240
-
-hw.smt=1
-machdep.allowaperture=2
-
-kern.audio.record=1
-kern.video.record=1
-
-net.inet.udp.recvspace=262144
-net.inet.udp.sendspace=262144
-</code>
-</div>
+      </div>
+      <div class="card border-light mb-3" style="max-width: 64rem">
+        <div class="card-header">sysupgrade</div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">doas configuration</h5> -->
+          <p class="card-text">
+            doas sysupgrade -r - <em>for running current snapshot</em>
+          </p>
+        </div>
+      </div>
+      <div class="card border-light mb-3" style="max-width: 64rem">
+        <div class="card-header">software</div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">doas configuration</h5> -->
+          <p class="card-text">
+            doas pkg_add obsdfreqd git curl neovim firefox
+          </p>
+        </div>
+      </div>
+      <code>apmd_flags=-L obsdfreqd_flags=-T 85,55</code>
+      <code>
+        kern.shminfo.shmall=6291456 kern.shminfo.shmmax=999999999
+        kern.shminfo.shmmni=2048 kern.shminfo.shmseg=2048
+        kern.seminfo.semmns=4096 kern.seminfo.semmni=1024 kern.maxproc=3250
+        kern.maxfiles=8192 kern.maxthread=5240 hw.smt=1 machdep.allowaperture=2
+        kern.audio.record=1 kern.video.record=1 net.inet.udp.recvspace=262144
+        net.inet.udp.sendspace=262144
+      </code>
+    </div>
   </body>
 </html>
