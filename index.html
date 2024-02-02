@@ -16,12 +16,18 @@
           <!-- <h5 class="card-title">doas configuration</h5> -->
           <p class="card-text">echo "permit keepenv nopass username" > /etc/doas.conf.</p>
         </div>
-      
-  
-        <li>doas sysupgrade -r - <em>for running current snapshot</em></li>
-        <li>doas pkg_add obsdfreqd git curl neovim firefox</li>
-        <li>doas rcctl enable apmd obsdfreqd <em>put -L in /etc/rc.conf.local as apmd_flags, and obsdfreqd should be enabled under pkg_scripts</em></li>
-      </ul>
+        <div class="card border-light mb-3" style="max-width: 64rem;">
+          <div class="card-header">sysupgrade</div>
+          <div class="card-body">
+            <!-- <h5 class="card-title">doas configuration</h5> -->
+            <p class="card-text">doas sysupgrade -r - <em>for running current snapshot</em>/p>
+          </div>
+          <div class="card border-light mb-3" style="max-width: 64rem;">
+            <div class="card-header">software</div>
+            <div class="card-body">
+              <!-- <h5 class="card-title">doas configuration</h5> -->
+              <p class="card-text">doas pkg_add obsdfreqd git curl neovim firefox/em>/p>
+            </div>
     </div>
   </body>
 </html>
