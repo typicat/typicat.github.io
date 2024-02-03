@@ -12,7 +12,7 @@ No guarantees that all of this will work on your system. It is not a guide, but 
 
 
 ### 2. System configuration
-Tweaks for quieter and cooler system - [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
+Tweaks for quieter and cooler system: [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
 ```
 pkg_add obsdfreqd
 rcctl enable obsdfreqd
@@ -26,8 +26,8 @@ Enable touchpad tapping
 echo "mouse.tp.tapping=1" > /etc/wsconsctl.conf  # enable touchpad tapclick
 ```
 
-#####sysctl.conf
-<sup>[reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/) worth checking out</sup>
+##### sysctl.conf
+Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
 
 ```
 kern.shminfo.shmall=6291456
@@ -47,8 +47,9 @@ machdep.allowaperture=2
 net.inet.udp.recvspace=262144
 net.inet.udp.sendspace=262144
 ```
-####login.conf
-<sup>Changes only, leave rest as is. Apply with usermod -L staff username</sup>
+#### login.conf
+Changes only, leave rest as is. 
+``` usermod -L staff username ```
 ```
 staff:\
 datasize-cur=8192M:\
@@ -59,13 +60,12 @@ maxproc-cur:1024M:\
 ```
 
 ### 3. X configuration
-For X related errors after xenodm login
-``` cat ~/.xsession-errors ```
+For X related errors after xenodm login ``` cat ~/.xsession-errors ```
 
-fvwm3 config - [github](https://github.com/typicat/dots/blob/main/config)
+fvwm3 config: [github](https://github.com/typicat/dots/blob/main/config)
 
 
-####.xsession
+#### .xsession
 ```
 ulimit -Sc 0  # no app core dumping, rm if you want core dumps
 
@@ -184,6 +184,9 @@ wintypes:
   dropdown_menu = { shadow=false;; }
 };
 ```
+
 Fonts: ``` $HOME/.fonts/ ```
+
 GTK themes:  ``` $HOME/.themes/ ```
+
 Icons/cursors: ``` $HOME/.icons/ ```
