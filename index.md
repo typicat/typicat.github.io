@@ -48,15 +48,15 @@ net.inet.udp.recvspace=262144
 net.inet.udp.sendspace=262144
 ```
 #### login.conf
-Changes only, leave rest as is. 
+Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html) 
 ``` usermod -L staff username ```
 ```
 staff:\
 datasize-cur=8192M:\
 datasize-max=infinity:\
 stacksize:16M:\
-maxproc-max:512M:\
-maxproc-cur:1024M:\
+maxproc-max:512:\
+maxproc-cur:1024:\
 ```
 
 ### 3. X configuration
