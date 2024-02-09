@@ -22,9 +22,9 @@ rcctl set apmd flags=-L
 ```
 
 Enable touchpad tapping
-```
-echo "mouse.tp.tapping=1" > /etc/wsconsctl.conf  # enable touchpad tapclick
-```
+``` wsconsctl mouse.tp.tapping=1 ```
+put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf for persistens
+
 
 ##### sysctl.conf
 Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
@@ -71,7 +71,7 @@ ulimit -Sc 0  # no app core dumping, rm if you want core dumps
 
 export MOZ_WEBRENDER=1
 export MOZ_ACCELERATED=1
-export LANG=en_us-UTF.8
+export LANG=en_us.UTF-8
 
 eval `dbus-launch --sh-syntax`
 if [ -x ${PREFIX}/bin/dbus-launch -a -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
