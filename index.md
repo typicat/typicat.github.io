@@ -49,6 +49,7 @@ net.inet.udp.sendspace=262144
 ```
 #### login.conf
 Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html) 
+
 ``` usermod -L staff username ```
 ```
 staff:\
