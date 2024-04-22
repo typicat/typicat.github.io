@@ -30,14 +30,6 @@ put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf for persistens
 Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
 
 ```
-kern.shminfo.shmall=6291456
-kern.shminfo.shmmax=999999999
-kern.shminfo.shmmni=2048
-
-kern.shminfo.shmseg=2048
-kern.seminfo.semmns=4096
-kern.seminfo.semmni=1024
-
 kern.maxproc=3250
 kern.maxfiles=8192
 kern.maxthread=5240
@@ -182,7 +174,7 @@ wintypes:
   dock = { shadow=false; clip-shadow-above=true; }
   dnd = { shadow=false; }
   popup_menu = { shadow=false; }
-  dropdown_menu = { shadow=false;; }
+  dropdown_menu = { shadow=false; }
 };
 ```
 
