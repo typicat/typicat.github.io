@@ -4,10 +4,10 @@
 General desktop usage with OpenBSD on ThinkPad T450s.
 Usually using -current with weekly sysupgrades unless something is broken.
 
-No guarantees that all of this will work on your system. It is not a guide, but reference - will not cover installation of OpenBSD nor hardware support or how to setup wifi etc..
+No guarantees that all of this will work on any system. It is not a guide, but reference - will not cover installation of OpenBSD nor hardware support or how to setup wifi etc..
 
 - Mailing lists
-[misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-misc)
+[misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
 
 
 
@@ -28,19 +28,16 @@ put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf for persistens
 
 ##### sysctl.conf
 Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
-
+Usually just tweak abit
 ```
 kern.maxproc=3250
 kern.maxfiles=8192
 kern.maxthread=5240
-
-machdep.allowaperture=2
-
-net.inet.udp.recvspace=262144
-net.inet.udp.sendspace=262144
 ```
+
 #### login.conf
 Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html) 
+Reference laptop has 12gb of RAM (!)
 
 ``` usermod -L staff username ```
 ```
@@ -75,11 +72,10 @@ xrdb -merge .Xresources
 xset dpms 0 0 0
 xset s off
 xset b off
-xset r rate 350 35
+xset r rate 150 50 # ratio for speedy keyrate
 
-xidle &
 picom --config=$HOME/.config/picom.conf -b
-
+xidle &
 exec fvwm3
 ```
 
@@ -113,8 +109,8 @@ XTerm*metaSendsEscape   : true
 XTerm*altSendsEscape    : true
 XTerm*loginshell        : true
 
-! set theme here
-#include ".local/apprentice"
+! set theme with #include "colorscheme-file"
+
 ```
 
 
@@ -165,7 +161,6 @@ shadow-opacity=0.5;
 shadow-execlude = [
     "name = 'firefox' && argb",
     "_GTK_FRAME_EXTENTS@:c"
-
 ]
 
 wintypes:
@@ -178,8 +173,8 @@ wintypes:
 };
 ```
 
-Fonts: ``` $HOME/.fonts/ ```
+Fonts goes into ``` $HOME/.fonts/ ```
 
-GTK themes:  ``` $HOME/.themes/ ```
+GTK themes goes into:  ``` $HOME/.themes/ ```
 
-Icons/cursors: ``` $HOME/.icons/ ```
+Icons/cursors goes into: ``` $HOME/.icons/ ```
