@@ -7,6 +7,7 @@ Usually using -current with weekly sysupgrades unless something is broken.
 No guarantees that all of this will work on any system. It is not a guide, but reference - will not cover installation of OpenBSD nor hardware support or how to setup wifi etc..
 
 - Mailing lists
+[marc.info](https://marc.info)
 [misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
 
 
@@ -23,12 +24,11 @@ rcctl set apmd flags=-L
 
 Enable touchpad tapping
 ``` wsconsctl mouse.tp.tapping=1 ```
-put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf for persistens
+put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf to keep it at boot 
 
 
 ##### sysctl.conf
 Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
-Usually just tweak abit
 ```
 kern.maxproc=3250
 kern.maxfiles=8192
@@ -72,10 +72,9 @@ xrdb -merge .Xresources
 xset dpms 0 0 0
 xset s off
 xset b off
-xset r rate 150 50 # ratio for speedy keyrate
+xset r rate 250 50 # ratio for speedy keyrate
 
 picom --config=$HOME/.config/picom.conf -b
-xidle &
 exec fvwm3
 ```
 
