@@ -2,14 +2,12 @@
 ![Puffy OpenBSD logo](images/puffy.png)
 ### 1. General Information
 General desktop usage with OpenBSD on ThinkPad T450s.
-Usually using -current with weekly sysupgrades unless something is broken.
+Using -current with weekly sysupgrades unless something is broken.
 
-No guarantees that all of this will work on any system. It is not a guide, but reference - will not cover installation of OpenBSD nor hardware support or how to setup wifi etc..
 
 - Mailing lists
 [marc.info](https://marc.info)
 [misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
-
 
 
 ### 2. System configuration
@@ -24,7 +22,8 @@ rcctl set apmd flags=-L
 
 Enable touchpad tapping
 ``` wsconsctl mouse.tp.tapping=1 ```
-put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf to keep it at boot 
+Put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf to keep it at boot
+
 
 
 ##### sysctl.conf
@@ -36,8 +35,9 @@ kern.maxthread=5240
 ```
 
 #### login.conf
-Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html) 
+Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html)
 Reference laptop has 12gb of RAM (!)
+
 
 ``` usermod -L staff username ```
 ```
@@ -73,7 +73,7 @@ xset dpms 0 0 0
 xset s off
 xset b off
 xset r rate 250 50 # ratio for speedy keyrate
-
+xidle &
 picom --config=$HOME/.config/picom.conf -b
 exec fvwm3
 ```
@@ -110,9 +110,8 @@ XTerm*loginshell        : true
 
 ! set theme with #include "colorscheme-file"
 
+
 ```
-
-
 ### 4. Software
 ```
 pkg_add colorls zsh git curl clang-tools-extra neovim firefox lxappearance
