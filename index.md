@@ -26,7 +26,7 @@ Put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf to keep it at boot
 
 
 
-##### sysctl.conf
+#### sysctl.conf
 Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
 ```
 kern.maxproc=3250
@@ -59,9 +59,10 @@ fvwm3 config: [github](https://github.com/typicat/dots/blob/main/config)
 ```
 ulimit -Sc 0  # no app core dumping, rm if you want core dumps
 
+export LANG=en_us.UTF-8
+export BROWSER=firefox
 export MOZ_WEBRENDER=1
 export MOZ_ACCELERATED=1
-export LANG=en_us.UTF-8
 
 eval `dbus-launch --sh-syntax`
 if [ -x ${PREFIX}/bin/dbus-launch -a -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
@@ -75,7 +76,7 @@ xset b off
 xset r rate 250 50 # ratio for speedy keyrate
 xidle &
 picom --config=$HOME/.config/picom.conf -b
-exec fvwm3
+exec cwm
 ```
 
 #### .Xresources
@@ -114,7 +115,7 @@ XTerm*loginshell        : true
 ```
 ### 4. Software
 ```
-pkg_add colorls zsh git curl clang-tools-extra neovim firefox lxappearance
+pkg_add colorls zsh git curl clang-tools-extra neovim firefox lxappearance fzf
 ```
 
 #### .zshrc
@@ -128,9 +129,10 @@ export BROWSER=firefox
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(git fzf)
 
 source $ZSH/oh-my-zsh.sh
+eval "$(fzf --zsh)"
 
 alias ls="colorls -F"
 alias ll="ls -la"
@@ -138,10 +140,11 @@ alias l="ls -s"
 alias la="ls -la"
 
 alias vim="nvim"
+
 ```
 #### picom.conf
 ``` 
-backend="glx";
+backend="glx"; # or xrender
 vsync=true;
 
 mark-wmwin-focused = true;
@@ -157,17 +160,17 @@ glx-no-rebind-pixmap = true;
 shadow=true;
 shadow-opacity=0.5;
 shadow-execlude = [
-    "name = 'firefox' && argb",
     "_GTK_FRAME_EXTENTS@:c"
 ]
 
 wintypes:
 {
   tooltip = { shadow=false; full-shadow=false; };
-  dock = { shadow=false; clip-shadow-above=true; }
+  dock = { shadow=false; }
   dnd = { shadow=false; }
   popup_menu = { shadow=false; }
   dropdown_menu = { shadow=false; }
+  utility = { shadow=false; }
 };
 ```
 
