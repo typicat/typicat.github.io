@@ -1,7 +1,7 @@
 # Post installation configuration OpenBSD
 ![Puffy OpenBSD logo](images/puffy.png)
-### 1. General Information
-General desktop usage with OpenBSD on ThinkPad T450s.
+### General Information
+This is how I setup general desktop usage with OpenBSD on ThinkPad T450s.
 Using -current with weekly sysupgrades unless something is broken.
 
 
@@ -9,9 +9,10 @@ Using -current with weekly sysupgrades unless something is broken.
 [marc.info](https://marc.info)
 [misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
 
+Last update 22/03/2025
 
-### 2. System configuration
-Tweaks for quieter and cooler system: [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
+### 1. System configuration
+obsdfreqd for quieter and cooler system: [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
 ```
 pkg_add obsdfreqd
 rcctl enable obsdfreqd
@@ -19,6 +20,7 @@ rcctl set obsdfreqd flags=-T 85,55
 rcctl enable apmd  # keeping this for zzz
 rcctl set apmd flags=-L
 ```
+as of lately my laptop has been running with apmd_flags=-A only with good results
 
 Enable touchpad tapping
 ``` wsconsctl mouse.tp.tapping=1 ```
@@ -32,19 +34,30 @@ Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/ex
 kern.maxproc=3250
 kern.maxfiles=8192
 kern.maxthread=5240
+
+
+kern.seminfo.semmni=1024
+kern.seminfo.semmns=4096
+kern.shminfo.shmseg=1024
+
+kern.shminfo.shmall=3145728
+kern.shminfo.shmmax=2147483647
+kern.shminfo.shmmni=1024
+
+net.inet.udp.recvspace=262144
+net.inet.udp.sendspace=262144
 ```
 
 #### login.conf
 Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html)
-Reference laptop has 12gb of RAM (!)
-
+Keep in mind these values goes for every logged in user on the system, hence if more than 1 user I would not use these values.
 
 ``` usermod -L staff username ```
 ```
 staff:\
-datasize-cur=8192M:\
+datasize-cur=15G:\
 datasize-max=infinity:\
-stacksize:16M:\
+stacksize:32M:\
 maxproc-max:512:\
 maxproc-cur:1024:\
 ```
@@ -70,12 +83,10 @@ if [ -x ${PREFIX}/bin/dbus-launch -a -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
           fi
 
 xrdb -merge .Xresources
-xset dpms 0 0 0
-xset s off
 xset b off
 xset r rate 250 50 # ratio for speedy keyrate
 xidle &
-picom --config=$HOME/.config/picom.conf -b
+picom -b
 exec cwm
 ```
 
@@ -88,10 +99,6 @@ Xft.hintstyle : hintslight
 Xft.lcdfilter : lcddefault
 Xft.rgba      : rgb
 Xft.dpi       : 96
-
-XIdle*position : sw
-XIdle*delay    : 1
-XIdle*timeout  : 300
 
 XTerm*faceName          : xft:CaskaydiaCove Nerd Font:pixelsize=13
 XTerm*allowBoldFonts    : false
@@ -159,7 +166,7 @@ glx-no-rebind-pixmap = true;
 
 shadow=true;
 shadow-opacity=0.5;
-shadow-execlude = [
+shadow-exclude = [
     "_GTK_FRAME_EXTENTS@:c"
 ]
 
