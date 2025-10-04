@@ -35,14 +35,9 @@ kern.maxproc=3250
 kern.maxfiles=8192
 kern.maxthread=5240
 
-
 kern.seminfo.semmni=1024
 kern.seminfo.semmns=4096
 kern.shminfo.shmseg=1024
-
-kern.shminfo.shmall=3145728
-kern.shminfo.shmmax=2147483647
-kern.shminfo.shmmni=1024
 
 net.inet.udp.recvspace=262144
 net.inet.udp.sendspace=262144
@@ -131,7 +126,6 @@ export PATH=$HOME/.local/bin:$PATH
 export CLICOLOR=1
 export TERM=xterm-256color
 export PAGER=less
-export BROWSER=firefox
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -141,17 +135,14 @@ plugins=(git fzf)
 source $ZSH/oh-my-zsh.sh
 eval "$(fzf --zsh)"
 
-alias ls="colorls -F"
-alias ll="ls -la"
-alias l="ls -s"
-alias la="ls -la"
+alias ls="colorls -Fh"
 
 alias vim="nvim"
 
 ```
 #### picom.conf
 ``` 
-backend="glx"; # or xrender
+backend="xrender"; # or xrender
 vsync=true;
 
 mark-wmwin-focused = true;
