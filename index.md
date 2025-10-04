@@ -60,9 +60,6 @@ maxproc-cur:1024:\
 ### 3. X configuration
 For X related errors after xenodm login ``` cat ~/.xsession-errors ```
 
-fvwm3 config: [github](https://github.com/typicat/dots/blob/main/config)
-
-
 #### .xsession
 ```
 ulimit -Sc 0  # no app core dumping, rm if you want core dumps
