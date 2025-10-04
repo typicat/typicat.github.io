@@ -44,7 +44,7 @@ net.inet.udp.sendspace=262144
 ```
 
 #### login.conf
-Changes only, leave rest as is. [resource](https://sohcahtoa.org.uk/openbsd.html)
+Changes only, leave rest as is.
 Keep in mind these values goes for every logged in user on the system, hence if more than 1 user I would not use these values.
 
 ``` usermod -L staff username ```
