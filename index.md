@@ -9,7 +9,7 @@ Using -current with weekly sysupgrades unless something is broken.
 [marc.info](https://marc.info)
 [misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
 
-Last update 22/03/2025
+Last update 04/10/2025
 
 ### 1. System configuration
 obsdfreqd for quieter and cooler system: [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
