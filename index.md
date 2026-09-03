@@ -1,7 +1,7 @@
 # Post installation configuration OpenBSD
 ![Puffy OpenBSD logo](images/puffy.png)
 ### General Information
-This is how I setup general desktop usage with OpenBSD on ThinkPad T450s.
+This is how I setup general desktop usage with OpenBSD on a ThinkPad x13.
 Using -current with weekly sysupgrades unless something is broken.
 
 
@@ -9,7 +9,7 @@ Using -current with weekly sysupgrades unless something is broken.
 [marc.info](https://marc.info)
 [misc](https://marc.info/?l=openbsd-misc) - [tech](https://marc.info/?l=openbsd-tech) - [cvs](https://marc.info/?l=openbsd-cvs) - [bugs](https://marc.info/?l=openbsd-bugs)
 
-Last update 04/10/2025
+Last update 03/09/2026
 
 ### 1. System configuration
 rcctl enable apmd  # keeping this for zzz
