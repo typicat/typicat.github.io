@@ -12,50 +12,60 @@ Using -current with weekly sysupgrades unless something is broken.
 Last update 04/10/2025
 
 ### 1. System configuration
-obsdfreqd for quieter and cooler system: [obsdfreqd](https://dataswamp.org/~solene/2022-03-21-openbsd-cool-frequency.html)
-```
-pkg_add obsdfreqd
-rcctl enable obsdfreqd
-rcctl set obsdfreqd flags=-T 85,55
 rcctl enable apmd  # keeping this for zzz
-rcctl set apmd flags=-L
+rcctl set apmd flags=-A
 ```
 as of lately my laptop has been running with apmd_flags=-A only with good results
 
 Enable touchpad tapping
-``` wsconsctl mouse.tp.tapping=1 ```
-Put ``` mouse.tp.tapping=1``` into /etc/wsconsctl.conf to keep it at boot
-
+wsconsctl mouse.tp.tapping=1
+Put into /etc/wsconsctl.conf to keep it at boot
 
 
 #### sysctl.conf
-Worth checking out: [reddit thread](https://www.reddit.com/r/openbsd/comments/exm01m/how_to_calculate_shared_memory_limits_and/)
 ```
-kern.maxproc=3250
-kern.maxfiles=8192
-kern.maxthread=5240
+```
+kern.shminfo.shmmax=2147483647
+kern.shminfo.shmall=524288
+kern.shminfo.shmmni=2048
+kern.shminfo.shmseg=2048
 
-kern.seminfo.semmni=1024
-kern.seminfo.semmns=4096
-kern.shminfo.shmseg=1024
+kern.seminfo.semmns=4096 
+kern.seminfo.semmni=1024 
 
-net.inet.udp.recvspace=262144
+kern.maxproc=8192
+kern.maxfiles=16384
+kern.maxvnodes=100000
+
+kern.somaxconn=1024 
+net.inet.udp.recvspace=262144 
 net.inet.udp.sendspace=262144
+net.inet.tcp.mssdflt=1460 
+net.inet.tcp.keepidle=300 
+net.inet.ip.ifq.maxlen=4096
+
+kern.audio.record=1
 ```
 
 #### login.conf
-Changes only, leave rest as is.
+Changes to staff only, I leave rest as is.
 Keep in mind these values goes for every logged in user on the system, hence if more than 1 user I would not use these values.
 
 ``` usermod -L staff username ```
+
 ```
 staff:\
-datasize-cur=15G:\
-datasize-max=infinity:\
-stacksize:32M:\
-maxproc-max:512:\
-maxproc-cur:1024:\
-```
+	:datasize-cur=12288M:\
+	:datasize-max=infinity:\
+	:maxproc-max=4096:\
+	:maxproc-cur=1024:\
+	:openfiles-cur=8192:\
+	:openfiles-max=16384:\
+	:stacksize-cur=16M:\
+	:stacksize-max=32M:\
+	:ignorenologin:\
+	:requirehome@:\
+	:tc=default:```
 
 ### 3. X configuration
 For X related errors after xenodm login ``` cat ~/.xsession-errors ```
@@ -109,68 +119,7 @@ XTerm*altSendsEscape    : true
 XTerm*loginshell        : true
 
 ! set theme with #include "colorscheme-file"
-
-
-```
-### 4. Software
-```
-pkg_add colorls zsh git curl clang-tools-extra neovim firefox lxappearance fzf
 ```
 
-#### .zshrc
+GTK themes goes into $HOME/.themes
 ```
-export PATH=$HOME/.local/bin:$PATH
-export CLICOLOR=1
-export TERM=xterm-256color
-export PAGER=less
-
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-
-plugins=(git fzf)
-
-source $ZSH/oh-my-zsh.sh
-eval "$(fzf --zsh)"
-
-alias ls="colorls -Fh"
-
-alias vim="nvim"
-
-```
-#### picom.conf
-``` 
-backend="xrender"; # or xrender
-vsync=true;
-
-mark-wmwin-focused = true;
-mark-ovredir-focused = true;
-detect-rounded-corners = true;
-detect-client-opacity = true;
-detect-transient = true;
-use-damage=true;
-
-glx-no-stencil = true;
-glx-no-rebind-pixmap = true;
-
-shadow=true;
-shadow-opacity=0.5;
-shadow-exclude = [
-    "_GTK_FRAME_EXTENTS@:c"
-]
-
-wintypes:
-{
-  tooltip = { shadow=false; full-shadow=false; };
-  dock = { shadow=false; }
-  dnd = { shadow=false; }
-  popup_menu = { shadow=false; }
-  dropdown_menu = { shadow=false; }
-  utility = { shadow=false; }
-};
-```
-
-Fonts goes into ``` $HOME/.fonts/ ```
-
-GTK themes goes into:  ``` $HOME/.themes/ ```
-
-Icons/cursors goes into: ``` $HOME/.icons/ ```
