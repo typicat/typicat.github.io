@@ -119,7 +119,6 @@ XTerm*altSendsEscape    : true
 XTerm*loginshell        : true
 
 ! set theme with #include "colorscheme-file"
-```
 
+Fonts goes into $HOME/.fonts
 GTK themes goes into $HOME/.themes
-```
